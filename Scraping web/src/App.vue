@@ -1,12 +1,12 @@
 <template>
-  <div class="">
-    <div v-for="(outerValue, outerKey) in data" :key="outerKey" class="outline m-6 p-4">
+  <div class="flex flecflex-wrap">
+    <div v-for="(outerValue, outerKey) in data" :key="outerKey" class="outline w-96 my-8">
       <h2 class="text-xl">{{ outerKey }}</h2>
       <div v-for="(_, index) in outerValue.etapper" :key="index" class="my-3">
         <p class="">{{ outerValue.etapper[index] }}</p>
         <p>{{ outerValue.info[index] }}</p>
       </div>
-       <p>{{ outerValue.link }}</p>
+       <a :href="outerValue.link">{{ outerValue.link }}</a>
     </div>
   </div>
 </template>
