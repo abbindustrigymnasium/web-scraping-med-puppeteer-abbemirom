@@ -4,7 +4,8 @@
     <div class="flex flex-col items-center h-screen">
       <input placeholder="Sök..." class="flex items-center bg-neutral-200 w-4/5 h-10 my-4 px-10 rounded-lg mt-16"
         v-model="input" type="text" />
-      <div class="grid grid-cols-3 gap-5 mx-8  overflow-auto bg-neutral-800 bg-opacity-75 rounded-xl p-6 w-11/12 h-5/6 mb-12">
+      <div
+        class="grid grid-cols-3 gap-5 mx-8  overflow-auto bg-neutral-800 bg-opacity-75 rounded-xl p-6 w-11/12 h-5/6 mb-12">
         <div v-for="([outerKey, outerValue]) in filteredData" :key="outerKey"
           class="rounded-xl bg-stone-950 text-lg text-stone-200 px-4" @click="Expand(outerKey)">
           <h2 class="text-xl text-stone-200 flex justify-center my-5">{{ outerKey }}</h2>
@@ -13,7 +14,7 @@
               <p>{{ outerValue.etapper[index] }}</p>
               <p>{{ outerValue.info[index] }}</p>
             </div>
-            <p class="text-stone-200">För mer information klicka på länken: <a :href="outerValue.link">{{ outerValue.link
+            <p class="text-stone-200">För mer information klicka på länken: <a :href="outerValue.link" class="text-blue-500">{{ outerValue.link
             }}</a></p>
           </div>
         </div>
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-import json from "../Scraping code/Data.json"
+import json from "../Scraping_code/Data.json"
 export default {
   data () {
     return {
@@ -38,7 +39,7 @@ export default {
     }
   },
   computed: {
-      filteredData () {
+    filteredData () {
       const title = this.input.toLowerCase()
       return Object.entries(this.data).filter(([outerKey, outerValue]) =>
         outerKey.toLowerCase().includes(title) ||
@@ -51,6 +52,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

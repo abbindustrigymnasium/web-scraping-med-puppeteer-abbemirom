@@ -31,7 +31,7 @@ const getAllTrails = async () => {
         // Convert the trailList to an iterable array
         return Array.from(trailList).map((trail) => {
 
-            // Gett the innertext and the href from the link and return it in an object
+            // Gett the innertext and the href from the link and returns it in an object
 
             const title = trail.querySelector("a").innerText
             const link = trail.querySelector("a").getAttribute("href")
@@ -96,6 +96,7 @@ const getAllTrails = async () => {
         await page.goto(trails[i].link, {
             waitUntil: "domcontentloaded",
         })
+
         // Click on cookiebutton 
         await page
             .click('button[id="CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"]')
@@ -103,27 +104,49 @@ const getAllTrails = async () => {
 
 
         const information = await page.evaluate(() => {
-            informationDiv = [...document.querySelectorAll('div.u-m-0')]
-                .find(div => div.querySelector('h4') && div.querySelector('h4').textContent.includes('Etapp '))
-
-
-            // Convert the quoteList to an iterable array
+            // Finds the div with the information I want by looking for whats inside the div
+            // the divs look sligthly diffrent and that is why we have all the trys
             try {
+                const informationDiv = [...document.querySelectorAll('div.u-m-0')]
+                    .find(div => {
+                        const h4 = div.querySelector('h4')
+                        return h4 && /etapp /i.test(h4.textContent)
+                    })
                 children = Array.from(informationDiv.children)
             }
             catch {
-                console.log("Hej")
-                return
+                try {
+                    const informationDiv = [...document.querySelectorAll('div.u-m-0')]
+                        .find(div => {
+                            const h4 = div.querySelector('h4')
+                            return h4 && /delled /i.test(h4.textContent)
+                        })
+                    children = Array.from(informationDiv.children)
+                }
+                catch {
+                    try {
+                        const informationDiv = [...document.querySelectorAll('div.u-m-0')]
+                            .find(div => {
+                                const h4 = div.querySelector('h4')
+                                return h4 && /deletapp /i.test(h4.textContent)
+                            })
+                        children = Array.from(informationDiv.children)
+                    }
+                    catch {
+                        return
+                    }
+                }
             }
 
+            // Convert the childTexts to an iterable array
             const childTexts = children.map(children => children.textContent)
-
 
             const searchTerm = "Etapp "
 
             etapper = []
             info = []
 
+            // Sort out the data I want by lookink for the searchTerm "Etapp "
             for (let k = 0; k < childTexts.length; k++) {
                 if (childTexts[k].includes(searchTerm)) {
                     console.log(childTexts[k])
@@ -132,21 +155,24 @@ const getAllTrails = async () => {
                 }
             }
 
-
             return { etapper, info }
 
         })
+
+        // I don't have all the trails as information because not all trails have the div, that is why I have a try and catch
         try {
             information["link"] = trails[i].link
         }
         catch {
             console.log(trails[i].title, trails[i].link)
         }
+
+        // put everything in an object
         all[trails[i].title] = information
 
     }
 
-    // console.log(all)
+    // Push the data to a json file
     let data = JSON.stringify(all)
     console.log(data)
     fs.writeFile("Data.json", data, (error) => {
@@ -160,9 +186,7 @@ const getAllTrails = async () => {
         }
     })
 
-    // }
 }
 
+// Start scraping
 getAllTrails()
-
-
