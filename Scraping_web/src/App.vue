@@ -39,13 +39,15 @@ export default {
     }
   },
   computed: {
-    filteredData () {
+  filteredData () {
       const title = this.input.toLowerCase()
-      return Object.entries(this.data).filter(([outerKey, outerValue]) =>
-        outerKey.toLowerCase().includes(title) ||
-        outerValue.etapper.some(etapper => etapper.toLowerCase().includes(title)) ||
-        outerValue.info.some(info => info.toLowerCase().includes(title))
-      )
+      return Object.entries(this.data).filter(([outerKey, outerValue]) => {
+        const lowercaseOuterKey = outerKey.toLowerCase()
+        const hasMatchedOuterKey = lowercaseOuterKey.includes(title)
+        const hasMatchedEtapper = outerValue.etapper?.some(etapper => etapper && etapper.toLowerCase().includes(title))
+        const hasMatchedInfo = outerValue.info?.some(info => info && info.toLowerCase().includes(title))
+        return hasMatchedOuterKey || hasMatchedEtapper || hasMatchedInfo
+      })
     }
   }
 
