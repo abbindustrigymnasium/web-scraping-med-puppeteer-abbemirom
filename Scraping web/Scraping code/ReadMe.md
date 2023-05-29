@@ -1,7 +1,7 @@
 # Web scraping
 
 ## Description
-Jag har web scarpat [Svenska turistföreningen](https://www.svenskaturistforeningen.se/guider-tips/leder/). Jag scrapar alla leder och sen tar jag reda på vilka ettaper och längderna på etapperna. Denna information laddas upp på en Json-fil, som jag sen hämtar i min applikation. 
+Jag har web scarpat [Svenska turistföreningen](https://www.svenskaturistforeningen.se/guider-tips/leder/). Jag scrapar alla leder och sen tar jag reda på vilka etapper och längderna på etapperna. Denna information laddas upp på en Json-fil, som jag sen hämtar i min applikation. 
 
 
 ## Recommended IDE Setup
