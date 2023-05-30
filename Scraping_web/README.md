@@ -2,40 +2,11 @@
 I mitt projekt har jag skrapat [svenska turistföreningen](https://www.svenskaturistforeningen.se/guider-tips/leder/). Tanken är att skrapa ned alla leder och sådan information som kan vara bra att ha, t.ex längd och antal etapper, så att man kan välja sin vandring utifrån det. När man väl har valt en led som har en bra läng kan man gå in just denns sida på svenska turistföreningen för att få mer information.  
 <br />
 
+## Systemkrav
+node
+npm
 
-## Installera puppeteer
-1.
-```
-mkdir first-puppeteer-scraper-example
-```
-2.
-```
-npm init -y
-```
-3. Din package.json borde se ut så här
-```
-{
-  "name": "first-puppeteer-scraper-example",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "puppeteer": "^19.6.2"
-  },
-  "type": "module",
-  "description": "",
-  "types": "module"
-}
-```
-4.
-```
-npm install puppeteer
-```
+
 <br />
 
 ## Skrapa
@@ -73,5 +44,8 @@ npm run dev
 <br />
 
 ## Problem
-## Förbättringar
 
+
+## Förbättringar
+Sökfunktionen
+Sortering
