@@ -169,7 +169,6 @@ const getAllTrails = async () => {
 
         // put everything in an object
         all[trails[i].title] = information
-
     }
 
     // Push the data to a json file
@@ -186,6 +185,7 @@ const getAllTrails = async () => {
         }
     })
 
+    await browser.close()
 }
 
 // Start scraping
